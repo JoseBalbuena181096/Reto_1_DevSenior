@@ -51,9 +51,22 @@ def agregarExperimento(listaExperimentos):
     print("El experimeto se agrego correctamente ")
     
 
-def eliminarExperimentos():
+def eliminarExperimentos(listaExperimentos):
     """ Perminte elimnar un experimento, dificultad 2 requiere de la funcion agregar """
-    pass
+    if not listaExperimentos:
+        print('No hay experimentos disponibles')
+        return
+    indice_str = input(f"Ingrese el ID del experimento a eliminar entre 1 y {len(listaExperimentos)}\n").strip()
+    try:
+        indice = int(indice_str)
+    except ValueError:
+        print("El indice no es numerico ")
+    if indice < 1 and indice > len(listaExperimentos):
+        print("El ID del experimento esta fuera del rango de experimetos ")
+        return
+    eliminado = listaExperimentos.pop(indice-1)
+    print(f'El experimeto {eliminado.nombre} se ha eliminado ')
+
 
 def visualizarExperimentos(listaExperimentos):
     """ Permite agregar experimentos, dificultad 2 requiere uso de la funcion agregar """
@@ -62,7 +75,7 @@ def visualizarExperimentos(listaExperimentos):
         return 
     tabla = PrettyTable()
     # Definir columnas
-    tabla.field_names = ["Id", "Nombre", "Fecha experimento", "Categoria", 'Resultados']
+    tabla.field_names = ["ID", "Nombre", "Fecha experimento", "Categoria", 'Resultados']
     for i, experimento in enumerate(listaExperimentos, start=1):
         tabla.add_row([f'{i}',f'{experimento.nombre}', f'{experimento.fechaRealizacion.strftime('%d/%m/%Y')}',\
                        f'{experimento.categoria}', f'{experimento.resultados}'])
@@ -105,6 +118,8 @@ def menu():
             agregarExperimento(listaExperimentos)
         elif opcion == '2':
             visualizarExperimentos(listaExperimentos)
+        elif opcion == '3':
+            eliminarExperimentos(listaExperimentos)
         elif opcion == '7':
             print('Fin del programa')
             break
