@@ -1,0 +1,13 @@
+ID, Nombre, Fecha experimento, Categoria, Resultados, Promedio, Maximo, Minimo
+1 ,Medicion Fuerza 1, 01/01/2021, Fisica, [12.0, 13.0, 14.0, 15.0], 13.5, 15.0, 12.0
+
+2 ,Medicion Fuerza 2, 02/02/2022, Fisica, [23.0, 24.0, 25.0, 26.0], 24.5, 26.0, 23.0
+
+3 ,Medicion Fuerza 3, 03/03/2023, Fisica, [34.0, 35.0, 36.0, 37.0], 35.5, 37.0, 34.0
+
+El mejor promedio Medicion Fuerza 3 con 35.5
+El mejor maximo Medicion Fuerza 3 con 37.0
+El mejor minimo Medicion Fuerza 1 con 12.0
+El peor promedio Medicion Fuerza 1 con 13.5
+El peor maximo Medicion Fuerza 1 con 15.0
+El peor minimo Medicion Fuerza 3 con 34.0
