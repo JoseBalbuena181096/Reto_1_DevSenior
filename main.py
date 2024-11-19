@@ -83,9 +83,31 @@ def visualizarExperimentos(listaExperimentos):
     print("Experimentos:\n")
     print(tabla)
 
-def calcularEstadisticas():
+def calcularEstadisticas(listaExperimentos):
     """ Calcular estadisticas basicas (promedios, maximos y minimos) de un experimentos, requiere de la funcion agregarExperimentos """
-    pass
+    if not listaExperimentos:
+        print('No hay experimentos disponibles')
+        return
+    indice_str = input(f"Ingrese el ID del experimento a analizar estadisticas entre 1 y {len(listaExperimentos)}\n").strip()
+    try:
+        indice = int(indice_str)
+    except ValueError:
+        print("El indice no es numerico ")
+    if indice < 1 and indice > len(listaExperimentos):
+        print("El ID del experimento esta fuera del rango de experimetos ")
+        return
+    experimento = listaExperimentos[indice-1]
+    promedio = statistics.mean(experimento.resultados)
+    maximo = max(experimento.resultados)
+    minimo = min(experimento.resultados)
+    tabla = PrettyTable()
+    tabla.field_names = ["Promedio", "Maximo Valor", "Minimo Valor"]
+    tabla.add_row([f'{promedio:.2f}',f'{maximo}', f'{minimo}'])
+    print("Resultado experimentos:\n")
+    print(tabla)
+
+
+
 
 def compararExperimentos():
     """ Compara dos o mas experimentos para determinar los mejores o peores resutados, dificultad 2 requiere el uso de funciones calcularEstadisticas """
@@ -120,6 +142,8 @@ def menu():
             visualizarExperimentos(listaExperimentos)
         elif opcion == '3':
             eliminarExperimentos(listaExperimentos)
+        elif opcion == '4':
+            calcularEstadisticas(listaExperimentos)
         elif opcion == '7':
             print('Fin del programa')
             break
