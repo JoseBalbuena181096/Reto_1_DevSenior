@@ -103,7 +103,7 @@ def calcularEstadisticas(listaExperimentos):
     tabla = PrettyTable()
     tabla.field_names = ["Promedio", "Maximo Valor", "Minimo Valor"]
     tabla.add_row([f'{promedio:.2f}',f'{maximo}', f'{minimo}'])
-    print("Resultado experimentos:\n")
+    print("Resultado experimentos: \n")
     print(tabla)
 
 
