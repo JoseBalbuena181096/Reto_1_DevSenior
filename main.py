@@ -93,6 +93,7 @@ def calcularEstadisticas(listaExperimentos):
         indice = int(indice_str)
     except ValueError:
         print("El indice no es numerico ")
+        return
     if indice < 1 and indice > len(listaExperimentos):
         print("El ID del experimento esta fuera del rango de experimetos ")
         return
@@ -109,9 +110,62 @@ def calcularEstadisticas(listaExperimentos):
 
 
 
-def compararExperimentos():
+def compararExperimentos(listaExperimentos):
     """ Compara dos o mas experimentos para determinar los mejores o peores resutados, dificultad 2 requiere el uso de funciones calcularEstadisticas """
-    pass
+    if not listaExperimentos:
+        print('No hay experimentos disponibles')
+        return
+    
+    indicesComparacion_str = input(f"Ingrese la lista de IDs de los experimentos a comparar entre 1 y {len(listaExperimentos)}, separados por coma ej 1,3,4 \n").strip()
+    try:
+        indicesComparacion = list(map(int, indicesComparacion_str.split(','))) 
+    except ValueError:
+        print("Los indices no son númericos ")
+
+    for indiceComparacion in indicesComparacion: 
+        if indiceComparacion < 1 and indiceComparacion > len(listaExperimentos):
+            print(f"El ID del comparacion {indiceComparacion} esta fuera del rango de experimetos\n ")
+            return
+
+    promedios = [] 
+    maximos = []
+    minimos =  []
+
+    for indiceComparacion  in indicesComparacion:
+        promedio = statistics.mean(listaExperimentos[indiceComparacion - 1].resultados)
+        minimo = min(listaExperimentos[indiceComparacion - 1].resultados)
+        maximo = max(listaExperimentos[indiceComparacion - 1].resultados)
+        promedios.append([indiceComparacion-1 , promedio])
+        minimos.append([indiceComparacion-1 , minimo])
+        maximos.append([indiceComparacion-1 , maximo])
+
+    print(promedios)
+
+    # Ordemaniento de promedios, maximos y minimos
+    promedios.sort(key=lambda promedio: promedio[1], reverse=True)
+    maximos.sort(key=lambda maximo: maximo[1], reverse=True)
+    minimos.sort(key=lambda minimo: minimo[1])
+
+    tabla = PrettyTable()
+    tabla.field_names = ["Estadistica", "Experimento", "Valor", "Categoria"]
+    # Mejores
+    tabla.add_row(['Promedio',f'{listaExperimentos[promedios[0][0]].nombre}', f'{promedios[0][1]}', 'Mejor'])
+    tabla.add_row([' ',' ', ' ', ' '])
+    tabla.add_row(['Maximo',f'{listaExperimentos[maximos[0][0]].nombre}', f'{maximos[0][1]}', 'Mejor'])
+    tabla.add_row([' ',' ', ' ', ' '])
+    tabla.add_row(['Minimo',f'{listaExperimentos[minimos[0][0]].nombre}', f'{minimos[0][1]}', 'Mejor'])
+    tabla.add_row([' ',' ', ' ', ' '])
+    # Peores
+    tabla.add_row(['Promedio',f'{listaExperimentos[promedios[-1][0]].nombre}', f'{promedios[-1][1]}', 'Peor'])
+    tabla.add_row([' ',' ', ' ', ' '])
+    tabla.add_row(['Maximo',f'{listaExperimentos[maximos[-1][0]].nombre}', f'{maximos[-1][1]}', 'Peor'])
+    tabla.add_row([' ',' ', ' ', ' '])
+    tabla.add_row(['Minimo',f'{listaExperimentos[minimos[-1][0]].nombre}', f'{minimos[-1][1]}', 'Peor'])
+    tabla.add_row([' ',' ', ' ', ' '])
+
+    print("Comparación experimentos: \n")
+    print(tabla)
+
 
 def generaInforme():
     """ Generar un informe resumen de los experimentos y sus estadistica, dificultad 3 requiere el uso de funcuiones visualzarExperimento y calcularEstadisticas """
@@ -144,6 +198,8 @@ def menu():
             eliminarExperimentos(listaExperimentos)
         elif opcion == '4':
             calcularEstadisticas(listaExperimentos)
+        elif opcion == '5':
+            compararExperimentos(listaExperimentos)
         elif opcion == '7':
             print('Fin del programa')
             break
