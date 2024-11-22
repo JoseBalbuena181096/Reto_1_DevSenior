@@ -96,7 +96,7 @@ def calcularEstadisticas(listaExperimentos):
     except ValueError:
         print("El indice no es numerico ")
         return
-    if indice < 1 and indice > len(listaExperimentos):
+    if indice < 1 or indice > len(listaExperimentos):
         print("El ID del experimento esta fuera del rango de experimetos ")
         return
     experimento = listaExperimentos[indice-1]
@@ -120,9 +120,9 @@ def compararExperimentos(listaExperimentos):
         indicesComparacion = list(map(int, indicesComparacion_str.split(','))) 
     except ValueError:
         print("Los indices no son númericos ")
-
+        return
     for indiceComparacion in indicesComparacion: 
-        if indiceComparacion < 1 and indiceComparacion > len(listaExperimentos):
+        if indiceComparacion < 1 or indiceComparacion > len(listaExperimentos):
             print(f"El ID del comparacion {indiceComparacion} esta fuera del rango de experimetos\n ")
             return
 
