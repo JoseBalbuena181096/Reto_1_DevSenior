@@ -62,7 +62,8 @@ def eliminarExperimentos(listaExperimentos):
         indice = int(indice_str)
     except ValueError:
         print("El indice no es numerico ")
-    if indice < 1 and indice > len(listaExperimentos):
+        return
+    if indice < 1 or indice > len(listaExperimentos):
         print("El ID del experimento esta fuera del rango de experimetos ")
         return
     eliminado = listaExperimentos.pop(indice-1)
