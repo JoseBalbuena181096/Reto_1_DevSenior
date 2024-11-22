@@ -153,3 +153,6 @@ Este proyecto es de código abierto y está disponible bajo la [Licencia MIT](LI
   - Gestión básica de experimentos
   - Funciones de análisis estadístico
   - Generación de informes
+
+## 👀 Visualiza el proyecto aquí
+-  https://www.youtube.com/watch?v=5hLtoIokbks
