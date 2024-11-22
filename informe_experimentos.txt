@@ -1,0 +1,13 @@
+ID, Nombre, Fecha experimento, Categoria, Resultados, Promedio, Maximo, Minimo
+1 ,Medir Fuerza 1, 01/01/2021, Fisica, [12.0, 13.0, 14.6, 15.0], 13.65, 15.0, 12.0
+
+2 ,Medir Fuerza 2, 02/02/2022, Fisica, [23.0, 24.0, 25.5, 26.0], 24.625, 26.0, 23.0
+
+3 ,Medir Fuerza 3, 03/03/2024, Fisica, [34.0, 35.0, 36.75, 37.0], 35.6875, 37.0, 34.0
+
+El mejor promedio Medir Fuerza 3 con 35.6875
+El mejor maximo Medir Fuerza 3 con 37.0
+El mejor minimo Medir Fuerza 1 con 12.0
+El peor promedio Medir Fuerza 1 con 13.65
+El peor maximo Medir Fuerza 1 con 15.0
+El peor minimo Medir Fuerza 3 con 34.0
